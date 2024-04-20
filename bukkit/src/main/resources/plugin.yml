@@ -1,0 +1,4 @@
+name: ProfileSpigot
+version: '${version}'
+main: studio.talespire.profile.ProfileSpigot
+api-version: '1.20'
