@@ -59,7 +59,7 @@ subprojects {
     }
 
     shadowJar {
-        archiveFileName = "core-${project.name}-${versionWithGit}.jar"
+        archiveFileName = "profile-${project.name}-${versionWithGit}.jar"
 
         relocate "redis.clients.jedis", "studio.lunarlabs.relocations.jedis"
 

@@ -1,7 +1,7 @@
 package studio.talespire.profile;
 
 import lombok.Getter;
-import studio.lunarlabs.universe.Universe;
+import studio.talespire.profile.profiles.ProfileHandler;
 
 import java.nio.file.Path;
 
@@ -12,14 +12,19 @@ import java.nio.file.Path;
 
 @Getter
 public abstract class Profile {
+
     @Getter
     private static Profile instance;
 
     private final Path dataFolder;
 
+    private final ProfileHandler profileHandler;
+
     public Profile(Path dataFolder) {
         instance = this;
         this.dataFolder = dataFolder;
+
+        profileHandler = new ProfileHandler();
 
         // Register services here
     }
