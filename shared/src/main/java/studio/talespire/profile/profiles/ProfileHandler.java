@@ -35,6 +35,8 @@ public class ProfileHandler extends MongoMapRepository<UUID, TalespireProfile> {
             return profile;
         }
 
-        return null;
+        // If profile is not found in cache or database, create a new one
+        profile = addProfile(uuid);
+        return profile;
     }
 }

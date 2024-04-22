@@ -2,7 +2,6 @@ package studio.talespire.profile.profiles;
 
 import lombok.Data;
 import lombok.Getter;
-import lombok.Synchronized;
 import studio.talespire.profile.Profile;
 import studio.talespire.profile.character.Character;
 
@@ -17,9 +16,11 @@ public class TalespireProfile {
 
     private String name;
     @Getter
-    private List<Character> characters = new ArrayList<>(); // Note: this might need to be more thread safe using a CopyOnWriteArrayList
+    private List<Character> characters = new ArrayList<>();// Note: this might need to be more thread safe using a CopyOnWriteArrayList
+    private Character selectedCharacter;
 
     public void load() {
+
         Profile.getInstance().getProfileHandler().getFromDatabaseFuture(uuid).whenComplete((profile, error) -> {
             if (error != null) {
                 error.printStackTrace();
@@ -45,11 +46,26 @@ public class TalespireProfile {
             throw new IllegalArgumentException("Character cannot be null");
         }
         characters.add(character);
+        this.save();
     }
 
     public void deleteCharacter(Character character) {
         characters.remove(character);
+        this.save();
     }
 
+    public void addCharacter(Character character) {
+        characters.add(character);
+        this.save();
+    }
 
+    public void updateCharacter(Character character) {
+        for (int i = 0; i < characters.size(); i++) {
+            if (characters.get(i).equals(character)) {
+                characters.set(i, character);
+                return;
+            }
+        }
+        this.save();
+    }
 }

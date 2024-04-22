@@ -2,6 +2,7 @@ package studio.talespire.profile;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import studio.lunarlabs.universe.annotation.BukkitPlugin;
+import studio.talespire.profile.profiles.ProfileListener;
 
 @BukkitPlugin(
         name = "Profile",

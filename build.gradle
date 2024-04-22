@@ -62,6 +62,34 @@ subprojects {
         archiveFileName = "profile-${project.name}-${versionWithGit}.jar"
 
         relocate "redis.clients.jedis", "studio.lunarlabs.relocations.jedis"
+        relocate "com.github", "studio.lunarlabs.relocations.github"
+        relocate "com.moandjiezana.toml", "studio.lunarlabs.relocations.moandjiezana.toml"
+        relocate "org.atteo", "studio.lunarlabs.relocations.atteo"
+        relocate "org.asynchttpclient", "studio.lunarlabs.relocations.asynchttpclient"
+        relocate "org.json", "studio.lunarlabs.relocations.json"
+        relocate "redis.clients.jedis", "studio.lunarlabs.relocations.jedis"
+        relocate "io.sentry", "studio.lunarlabs.relocations.sentry"
+        relocate "me.andyreckt.raspberry", "studio.lunarlabs.relocations.raspberry"
+        relocate "org.apache.commons.pool2", "studio.lunarlabs.relocations.apache.commons.pool2"
+        relocate "org.checkerframework", "studio.lunarlabs.relocations.checkerframework"
 
+        relocate "org.bson", "studio.lunarlabs.relocations.bson"
+        relocate "com.mongodb", "studio.lunarlabs.relocations.mongodb"
+        relocate "org.reactivestreams", "studio.lunarlabs.relocations.reactivestreams"
+        relocate "reactor", "studio.lunarlabs.relocations.projectreactor"
+
+        relocate "org.simpleyaml", "studio.lunarlabs.relocations.simpleyaml"
+        relocate "org.yaml.snakeyaml", "studio.lunarlabs.relocations.snakeyaml"
+
+        relocate "com.google.auto", "studio.lunarlabs.relocations.google.auto"
+//        relocate "com.google.gson", "studio.lunarlabs.relocations.google.gson"
+        relocate "com.google.common", "studio.lunarlabs.relocations.google.common"
+        relocate "com.google.errorprone", "studio.lunarlabs.relocations.google.errorprone"
+        relocate "com.google.thirdparty.publicsuffix", "studio.lunarlabs.relocations.google.thirdparty.publicsuffix"
+        relocate "com.google.j2objc", "studio.lunarlabs.relocations.google.j2objc"
+
+        relocate "javax.annotation", "studio.lunarlabs.relocations.javax.annotation"
+        relocate "jakarta.activation", "studio.lunarlabs.relocations.jakarta.activation"
+        relocate "com.sun.activation", "studio.lunarlabs.relocations.sun.activation"
     }
 }

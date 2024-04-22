@@ -1,13 +1,17 @@
 package studio.talespire.profile.menus;
 
 import lombok.RequiredArgsConstructor;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import studio.lunarlabs.universe.Universe;
 import studio.lunarlabs.universe.menus.api.Button;
 import studio.lunarlabs.universe.menus.api.Menu;
+import studio.lunarlabs.universe.menus.api.MenuHandler;
 import studio.lunarlabs.universe.util.ItemBuilder;
 import studio.talespire.profile.Profile;
 import studio.talespire.profile.character.Character;
@@ -34,10 +38,11 @@ public class CharacterSelectionMenu extends Menu {
         profileHandler.getProfile(player.getUniqueId()).getCharacters()
                 .stream().forEach(character -> buttons.put((buttons.size() + 11), new ExistingCharacterButton(character)));
 
-        for (int i = buttons.size() + 11; i < 6; i++) {
-            buttons.computeIfAbsent(i, k -> new NewCharacterButton());
-        }
+        int size = buttons.size() + 11;
 
+        for (int i = size; i < size + 7; i++) {
+            buttons.put(i, new NewCharacterButton());
+        }
         return buttons;
     }
 
@@ -62,11 +67,12 @@ public class CharacterSelectionMenu extends Menu {
         @Override
         public void clicked(Player player, ClickType clickType) {
             if (clickType == ClickType.RIGHT) {
-                // Delete character
-                player.closeInventory();
+                Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).deleteCharacter(character);
+                Universe.get().getRegistry().get(MenuHandler.class).openMenuAsync(player, new CharacterSelectionMenu());
             } else {
-                // Select character
+                Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).setSelectedCharacter(character);
                 player.closeInventory();
+                sendPlayerOff(player);
             }
         }
     }
@@ -84,8 +90,17 @@ public class CharacterSelectionMenu extends Menu {
 
         @Override
         public void clicked(Player player, ClickType clickType) {
-            // Create new character
+            Character character = new Character();
+            Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).addCharacter(character);
             player.closeInventory();
+            sendPlayerOff(player);
         }
+    }
+
+    public static void sendPlayerOff(Player player) {
+        player.sendMessage("Welcome to the server!");
+        player.teleport(Bukkit.getWorld("world").getSpawnLocation());
+        player.setInvisible(false);
+        player.clearActivePotionEffects();
     }
 }
