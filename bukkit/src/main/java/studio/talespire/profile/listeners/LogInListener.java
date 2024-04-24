@@ -1,5 +1,6 @@
 package studio.talespire.profile.listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -22,9 +23,9 @@ public class LogInListener implements Listener {
         event.getPlayer().setInvisible(true);
         event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 99999, 1, false, false, false));
 
-        Menu characterSelectionMenu = new CharacterSelectionMenu();
-        Universe.get().getRegistry().get(MenuHandler.class).openMenuAsync(event.getPlayer(), characterSelectionMenu);
+        event.getPlayer().teleport(Bukkit.getWorld("world").getSpawnLocation());
+
+        Universe.get().getRegistry().get(MenuHandler.class).openMenuAsync(event.getPlayer(), new CharacterSelectionMenu());
         event.getPlayer().sendMessage("Welcome to the server! Please select a character.");
     }
-
 }

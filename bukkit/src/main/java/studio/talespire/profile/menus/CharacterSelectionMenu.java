@@ -67,12 +67,22 @@ public class CharacterSelectionMenu extends Menu {
         @Override
         public void clicked(Player player, ClickType clickType) {
             if (clickType == ClickType.RIGHT) {
+
+                // Delete the character from the player's profile and reopen the menu
                 Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).deleteCharacter(character);
                 Universe.get().getRegistry().get(MenuHandler.class).openMenuAsync(player, new CharacterSelectionMenu());
+
             } else {
+
+                // Set the player's selected character to their current character
                 Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).setSelectedCharacter(character);
-                player.closeInventory();
+
+                // Update the player's inventory to that of the selected character
+                player.getInventory().setContents(character.getInventory());
+
+                // Remove all effects associated with first spawning in, and send the player off to the world
                 sendPlayerOff(player);
+                player.closeInventory();
             }
         }
     }
@@ -90,8 +100,14 @@ public class CharacterSelectionMenu extends Menu {
 
         @Override
         public void clicked(Player player, ClickType clickType) {
-            Character character = new Character();
-            Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).addCharacter(character);
+
+            Character newCharacter = new Character();
+
+            // Create a new character, add it to the player's profile and set it as the selected character
+            Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).addCharacter(newCharacter);
+            Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).setSelectedCharacter(newCharacter);
+
+            // Close the menu and send the player off to the world
             player.closeInventory();
             sendPlayerOff(player);
         }
