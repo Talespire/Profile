@@ -1,6 +1,7 @@
 package studio.talespire.profile;
 
 import lombok.Getter;
+import org.bukkit.plugin.Plugin;
 import studio.lunarlabs.universe.registry.ServiceRegistry;
 import studio.lunarlabs.universe.registry.ServiceRegistryImpl;
 import studio.talespire.profile.profiles.ProfileHandler;
@@ -31,6 +32,10 @@ public abstract class Profile {
 
 
         // Register services here
+    }
+
+    public Profile get() {
+        return instance;
     }
 
     public void disable() {

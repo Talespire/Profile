@@ -1,12 +1,12 @@
 package studio.talespire.profile;
 
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import studio.lunarlabs.universe.annotation.BukkitPlugin;
-import studio.talespire.profile.profiles.ProfileListener;
 
 @BukkitPlugin(
         name = "Profile",
-        version = "${git.build.version}-${git.commit.id.abbrev}-${git.branch}",
+            version = "${git.build.version}-${git.commit.id.abbrev}-${git.branch}",
         description = "Profile",
         load = "STARTUP",
         gitReplacements = true,
@@ -14,6 +14,13 @@ import studio.talespire.profile.profiles.ProfileListener;
         depend = "Universe"
 )
 public class ProfilePlugin extends JavaPlugin {
+
+    private static ProfilePlugin instance;
+
+    @Override
+    public void onLoad() {
+        instance = this;
+    }
 
     @Override
     public void onEnable() {
@@ -23,5 +30,9 @@ public class ProfilePlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         Profile.getInstance().disable();
+    }
+
+    public static Plugin get() {
+        return instance;
     }
 }

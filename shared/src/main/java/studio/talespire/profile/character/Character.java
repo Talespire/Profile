@@ -18,12 +18,39 @@ public class Character {
     private final ItemStack[] inventory;
     private final long creationDate;
 
+    private int maxHealth;
+    private int defense;
+    private int maxMana;
+
+    private int currentHealth;
+    private int currentMana;
+
     public Character() {
         this.level = 0;
         this.experience = 0;
         this.inventory = new ItemStack[41];
         this.characterClass = Class.UNDEFINED;
         this.creationDate = new Date().getTime();
+
+        this.maxHealth = 100;
+        this.defense = 0;
+        this.maxMana = 100;
+        this.currentHealth = this.maxHealth;
+        this.currentMana = this.maxMana;
+    }
+
+    public void incrementMana(int amount) {
+        this.currentMana += amount;
+        if (this.currentMana > this.maxMana) {
+            this.currentMana = this.maxMana;
+        }
+    }
+
+    public void incrementHealth(int amount) {
+        this.currentHealth += amount;
+        if (this.currentHealth > this.maxHealth) {
+            this.currentHealth = this.maxHealth;
+        }
     }
 
     public void setInventory(ItemStack[] inventory) {

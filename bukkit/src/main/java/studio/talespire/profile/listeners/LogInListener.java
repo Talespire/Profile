@@ -1,5 +1,7 @@
 package studio.talespire.profile.listeners;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,5 +31,6 @@ public class LogInListener implements Listener {
 
         Universe.get().getRegistry().get(MenuHandler.class).openMenuAsync(event.getPlayer(), new CharacterSelectionMenu());
         event.getPlayer().sendMessage("Welcome to the server! Please select a character.");
+
     }
 }

@@ -9,12 +9,17 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitTask;
 import studio.lunarlabs.universe.Universe;
 import studio.lunarlabs.universe.menus.api.Button;
 import studio.lunarlabs.universe.menus.api.Menu;
 import studio.lunarlabs.universe.menus.api.MenuHandler;
 import studio.lunarlabs.universe.util.ItemBuilder;
 import studio.talespire.profile.Profile;
+import studio.talespire.profile.ProfileBukkit;
+import studio.talespire.profile.ProfilePlugin;
+import studio.talespire.profile.actionbar.ActionBar;
 import studio.talespire.profile.character.Character;
 import studio.talespire.profile.profiles.ProfileHandler;
 
@@ -125,9 +130,15 @@ public class CharacterSelectionMenu extends Menu {
     }
 
     public static void sendPlayerOff(Player player) {
+
         player.sendMessage("Welcome to the server!");
         player.teleport(Bukkit.getWorld("world").getSpawnLocation());
         player.setInvisible(false);
         player.clearActivePotionEffects();
+
+        Bukkit.getScheduler().runTaskTimer(ProfilePlugin.get(), () -> {
+            ActionBar actionBar = new ActionBar();
+            actionBar.display(player);
+        }, 0L, 20L);
     }
 }
