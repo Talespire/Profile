@@ -1,5 +1,6 @@
 package studio.talespire.profile.menus;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,17 +18,21 @@ import studio.talespire.profile.Profile;
 import studio.talespire.profile.character.Character;
 import studio.talespire.profile.profiles.ProfileHandler;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @RequiredArgsConstructor
 public class CharacterSelectionMenu extends Menu {
 
+    @Getter  public static boolean doneWithMenu = false;
     private final ProfileHandler profileHandler = Profile.getInstance().getProfileHandler();
 
     @Override
     public String getTitle(Player player) {
-        return "CHARACTER SELECTION";
+        return "Select your Character";
     }
 
     @Override
@@ -38,11 +43,10 @@ public class CharacterSelectionMenu extends Menu {
         profileHandler.getProfile(player.getUniqueId()).getCharacters()
                 .stream().forEach(character -> buttons.put((buttons.size() + 11), new ExistingCharacterButton(character)));
 
-        int size = buttons.size() + 11;
-
-        for (int i = size; i < size + 7; i++) {
-            buttons.put(i, new NewCharacterButton());
+        for (int i = 11; i < 16; i++) {
+            buttons.computeIfAbsent(i, k -> new NewCharacterButton());
         }
+
         return buttons;
     }
 
@@ -53,12 +57,17 @@ public class CharacterSelectionMenu extends Menu {
 
         @Override
         public ItemStack getItem(Player player) {
+
+            DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+
             return new ItemBuilder(character.getCharacterClass().getIcon())
                     .setName(ChatColor.GOLD + "[>] Select This Character")
                     .addLoreLine(ChatColor.YELLOW + "Character Info")
                     .addLoreLine(ChatColor.YELLOW + "- " + ChatColor.GRAY + "Class: " + ChatColor.WHITE + character.getCharacterClass().getName())
                     .addLoreLine(ChatColor.YELLOW + "- " + ChatColor.GRAY + "Level: " + ChatColor.WHITE + character.getLevel())
                     .addLoreLine(ChatColor.YELLOW + "- " + ChatColor.GRAY + "XP: " + ChatColor.WHITE + character.getExperience() + "%")
+                    .addLoreLine("")
+                    .addLoreLine(ChatColor.DARK_GRAY + "Created on: " + dateFormat.format(new Date(character.getCreationDate())))
                     .addLoreLine("")
                     .addLoreLine(ChatColor.RED + "Right Click to Delete")
                     .toItemStack();
@@ -82,6 +91,7 @@ public class CharacterSelectionMenu extends Menu {
 
                 // Remove all effects associated with first spawning in, and send the player off to the world
                 sendPlayerOff(player);
+                doneWithMenu = true;
                 player.closeInventory();
             }
         }
@@ -108,6 +118,7 @@ public class CharacterSelectionMenu extends Menu {
             Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).setSelectedCharacter(newCharacter);
 
             // Close the menu and send the player off to the world
+            doneWithMenu = true;
             player.closeInventory();
             sendPlayerOff(player);
         }
