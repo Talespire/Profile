@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation project(":shared")
+
     compileOnly("studio.lunarlabs.universe:universe-spigot:0.0.1")
     compileOnly("studio.lunarlabs.universe:universe-shared:0.0.1")
 

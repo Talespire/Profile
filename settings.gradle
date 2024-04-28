@@ -1,4 +1,5 @@
-rootProject.name = 'Profile'
+rootProject.name = 'profile'
+
 include 'bukkit'
 include 'shared'
 include 'velocity'

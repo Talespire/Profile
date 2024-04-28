@@ -24,12 +24,6 @@ public class PlayerScoreBoardAdapter implements ScoreboardAdapter {
         lines.add(ChatColor.GREEN + "Level: " + Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).getSelectedCharacter().getLevel());
         lines.add(ChatColor.GREEN + "Experience: " + Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).getSelectedCharacter().getExperience());
 
-        if (Universe.get().getRegistry().get(MessageConfig.Reboot.class).isBroadcastEnabled()) {
-            lines.add("");
-            lines.add(ChatColor.RED + "Reboot in:");
-            lines.add(ChatColor.GRAY + Universe.get().getRegistry().get(MessageConfig.Reboot.class).getScheduledIn());
-        }
-
         lines.add("");
         lines.add(ChatColor.YELLOW + "talespire.net");
 

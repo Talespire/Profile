@@ -6,13 +6,14 @@ import studio.lunarlabs.universe.annotation.BukkitPlugin;
 
 @BukkitPlugin(
         name = "Profile",
-            version = "${git.build.version}-${git.commit.id.abbrev}-${git.branch}",
-        description = "Profile",
+        version = "${git.build.version}-${git.commit.id.abbrev}-${git.branch}",
+        description = "A plugin that adds a profile system to the game.",
         load = "STARTUP",
         gitReplacements = true,
         apiVersion = "1.13",
         depend = "Universe"
 )
+
 public class ProfilePlugin extends JavaPlugin {
 
     private static ProfilePlugin instance;
@@ -20,6 +21,7 @@ public class ProfilePlugin extends JavaPlugin {
     @Override
     public void onLoad() {
         instance = this;
+
     }
 
     @Override
@@ -29,7 +31,7 @@ public class ProfilePlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Profile.getInstance().disable();
+
     }
 
     public static Plugin get() {

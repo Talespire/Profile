@@ -4,9 +4,21 @@ import org.gradle.api.tasks.compile.JavaCompile
 plugins {
     id 'idea'
     id 'java'
+    id 'com.netflix.nebula.maven-publish' version '20.2.0'
     id 'org.ajoberstar.grgit' version "5.2.1"
     id "com.gorylenko.gradle-git-properties" version "2.4.1"
     id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+
+publishing {
+    publications {
+        nebula(MavenPublication) { publication ->
+            groupId "studio.talespire.profile"
+            artifactId 'parent'
+            version "$version"
+        }
+    }
 }
 
 
@@ -33,6 +45,10 @@ allprojects {
             name = "papermc-repo"
             url = "https://repo.papermc.io/repository/maven-public/"
         }
+
+        maven {
+            url 'https://repo.mincats.eu/public'
+        }
     }
 }
 
@@ -52,6 +68,7 @@ subprojects {
     dependencies {
         compileOnly "org.projectlombok:lombok:1.18.32"
         annotationProcessor "org.projectlombok:lombok:1.18.32"
+
         compileOnly "org.jetbrains:annotations:13.0"
 
         compileOnly("studio.lunarlabs.universe:universe-annotations:0.0.1")

@@ -136,9 +136,7 @@ public class CharacterSelectionMenu extends Menu {
         player.setInvisible(false);
         player.clearActivePotionEffects();
 
-        Bukkit.getScheduler().runTaskTimer(ProfilePlugin.get(), () -> {
-            ActionBar actionBar = new ActionBar();
-            actionBar.display(player);
-        }, 0L, 20L);
+        // Initialize the actionBar and let it do its thing
+        new ActionBar(player);
     }
 }

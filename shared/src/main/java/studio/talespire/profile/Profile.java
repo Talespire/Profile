@@ -1,7 +1,6 @@
 package studio.talespire.profile;
 
 import lombok.Getter;
-import org.bukkit.plugin.Plugin;
 import studio.lunarlabs.universe.registry.ServiceRegistry;
 import studio.lunarlabs.universe.registry.ServiceRegistryImpl;
 import studio.talespire.profile.profiles.ProfileHandler;
