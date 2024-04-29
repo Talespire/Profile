@@ -21,9 +21,8 @@ public class Character {
     private final ItemStack[] inventory;
     private final long creationDate;
 
-    //private final CombatProfile combatProfile;
-
     @Setter private String actionBarReleventInfo;
+    @Getter private final String actionBarReleventDefault;
 
     private int maxHealth;
     private int defense;
@@ -45,6 +44,7 @@ public class Character {
         creationDate = new Date().getTime();
 
         actionBarReleventInfo = ((ChatColor.STRIKETHROUGH + "           ") + ChatColor.RESET);
+        actionBarReleventDefault = actionBarReleventInfo;
 
         maxHealth = 100;
         defense = 0;
