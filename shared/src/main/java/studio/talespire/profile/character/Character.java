@@ -23,7 +23,7 @@ public class Character {
 
     //private final CombatProfile combatProfile;
 
-    private String actionBarReleventInfo;
+    @Setter private String actionBarReleventInfo;
 
     private int maxHealth;
     private int defense;

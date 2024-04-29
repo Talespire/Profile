@@ -15,10 +15,6 @@ public class ActionBar {
 
     private final Player player;
 
-    private String healthBar;
-    private String manaBar;
-    private String releventInfo;
-
     public ActionBar(Player player) {
         this.player = player;
 
@@ -26,28 +22,23 @@ public class ActionBar {
         Bukkit.getScheduler().runTaskTimer(ProfilePlugin.get(), () -> {
 
             //-- Initialize what should initially be the player's health, mana, and relevent info
-            healthBar = ChatColor.RED
+            String healthBar = ChatColor.RED
                     + (rounder(player.getHealth()*5)
                     + "/" + rounder(player.getMaxHealth()*5)
                     + "❤");
-            manaBar = ChatColor.BLUE
+            String manaBar = ChatColor.BLUE
                     + String.valueOf(Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).getSelectedCharacter().getCurrentMana())
                     + "/" + Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).getSelectedCharacter().getMaxMana()
                     + "✎";
-            releventInfo = ChatColor.WHITE
+            String releventInfo = ChatColor.WHITE
                     + Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).getSelectedCharacter().getActionBarReleventInfo();
 
-            this.display(player);
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                    new TextComponent(
+                            healthBar + "     " + releventInfo + "     " + manaBar
+                    )
+            );
         }, 0L, 20L);
-    }
-
-    public void display(Player player) {
-
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                new TextComponent(
-                    healthBar + "     " + releventInfo + "     " + manaBar
-                )
-        );
     }
 
     private int rounder(double value) {
