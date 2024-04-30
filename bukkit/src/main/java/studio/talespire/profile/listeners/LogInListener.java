@@ -1,21 +1,15 @@
 package studio.talespire.profile.listeners;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import studio.lunarlabs.universe.Universe;
-import studio.lunarlabs.universe.menus.api.Menu;
 import studio.lunarlabs.universe.menus.api.MenuHandler;
-import studio.lunarlabs.universe.util.PlayerUtils;
-import studio.talespire.profile.menus.CharacterSelectionMenu;
+import studio.talespire.profile.menus.talespireMenus.CharacterSelectionMenu;
 
 public class LogInListener implements Listener {
 

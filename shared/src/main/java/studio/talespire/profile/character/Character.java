@@ -14,8 +14,8 @@ public class Character {
 
     private int level;
     private final int experience;
-    
     private int levelPoints;
+    private double coins;
 
     private final Class characterClass;
     private final ItemStack[] inventory;

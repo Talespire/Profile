@@ -1,24 +1,19 @@
-package studio.talespire.profile.menus;
+package studio.talespire.profile.menus.talespireMenus;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitTask;
 import studio.lunarlabs.universe.Universe;
 import studio.lunarlabs.universe.menus.api.Button;
 import studio.lunarlabs.universe.menus.api.Menu;
 import studio.lunarlabs.universe.menus.api.MenuHandler;
 import studio.lunarlabs.universe.util.ItemBuilder;
 import studio.talespire.profile.Profile;
-import studio.talespire.profile.ProfileBukkit;
-import studio.talespire.profile.ProfilePlugin;
 import studio.talespire.profile.actionbar.ActionBar;
 import studio.talespire.profile.character.Character;
 import studio.talespire.profile.profiles.ProfileHandler;
@@ -29,11 +24,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequiredArgsConstructor
 public class CharacterSelectionMenu extends Menu {
 
     @Getter  public static boolean doneWithMenu = false;
-    private final ProfileHandler profileHandler = Profile.getInstance().getProfileHandler();
+    private final ProfileHandler profileHandler;
+
+    public CharacterSelectionMenu() {
+        this.setBordered(true);
+        this.profileHandler = Profile.getInstance().getProfileHandler();
+    }
 
     @Override
     public String getTitle(Player player) {
@@ -135,6 +134,12 @@ public class CharacterSelectionMenu extends Menu {
         player.teleport(Bukkit.getWorld("world").getSpawnLocation());
         player.setInvisible(false);
         player.clearActivePotionEffects();
+
+        player.getInventory().setItem(8,
+                new ItemBuilder(Material.HEART_OF_THE_SEA)
+                        .setName(ChatColor.GREEN + "Talespire Menu")
+                        .addLoreLine(ChatColor.GRAY + "Right click to open the Talespire Menu")
+                        .toItemStack());
 
         // Initialize the actionBar and let it do its thing
         new ActionBar(player);
