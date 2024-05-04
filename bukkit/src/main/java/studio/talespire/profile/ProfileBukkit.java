@@ -4,6 +4,8 @@ import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import studio.lunarlabs.universe.Universe;
 import studio.lunarlabs.universe.scoreboard.ScoreboardService;
+import studio.lunarlabs.universe.util.CommandUtil;
+import studio.talespire.profile.commands.PetCommands;
 import studio.talespire.profile.listeners.LogInListener;
 import studio.talespire.profile.listeners.LogOutListener;
 import studio.talespire.profile.menus.MenuListener;
@@ -26,6 +28,8 @@ public class ProfileBukkit extends Profile{
         plugin.getServer().getPluginManager().registerEvents(new LogOutListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new MenuListener(), plugin);
         //plugin.getServer().getPluginManager().registerEvents(new PlayerListener(), plugin);
+
+        CommandUtil.registerAll(new PetCommands());
 
     }
 }
