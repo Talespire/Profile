@@ -11,7 +11,6 @@ import studio.lunarlabs.universe.Universe;
 import studio.lunarlabs.universe.menus.api.Button;
 import studio.lunarlabs.universe.menus.api.MenuHandler;
 import studio.lunarlabs.universe.util.ItemBuilder;
-import studio.lunarlabs.universe.util.XSound;
 import studio.talespire.profile.storage.menus.PotionsMenu;
 
 @RequiredArgsConstructor

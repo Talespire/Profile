@@ -16,6 +16,7 @@ import studio.talespire.profile.menus.buttons.ExitButton;
 import studio.talespire.profile.menus.buttons.PlayerHead;
 import studio.talespire.profile.menus.buttons.StoreButton;
 import studio.talespire.profile.menus.talespireMenus.CharacterSelectionMenu;
+import studio.talespire.profile.storage.menus.FavoritesMenu;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -180,6 +181,7 @@ public class ProfileMenu extends Menu {
         @Override
         public void clicked (Player player, ClickType clickType) {
             player.closeInventory();
+            Universe.get(MenuHandler.class).openMenuAsync(new FavoritesMenu(), player);
         }
     }
 
