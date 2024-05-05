@@ -1,4 +1,6 @@
 package studio.talespire.profile.storage.menus;
 
-public class FishingMenu {
+import studio.lunarlabs.universe.menus.api.Menu;
+
+public class FishingMenu extends Menu {
 }

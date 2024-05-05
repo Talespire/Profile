@@ -11,16 +11,16 @@ import studio.lunarlabs.universe.Universe;
 import studio.lunarlabs.universe.menus.api.Button;
 import studio.lunarlabs.universe.menus.api.MenuHandler;
 import studio.lunarlabs.universe.util.ItemBuilder;
-import studio.talespire.profile.storage.menus.BooksMenu;
+import studio.talespire.profile.storage.menus.FishingMenu;
 
 @RequiredArgsConstructor
-public class BooksButton extends Button {
+public class FishingButton extends Button {
     private final boolean isSelected;
 
     @Override
     public ItemStack getItem(Player player) {
-        return new ItemBuilder(Material.BOOK)
-                .setName(isSelected? ChatColor.GREEN + "Books" : ChatColor.GRAY + "Books")
+        return new ItemBuilder(Material.SALMON)
+                .setName(isSelected? ChatColor.GREEN + "Fishing" : ChatColor.GRAY + "Fishing")
                 .toItemStack();
     }
 
@@ -30,7 +30,7 @@ public class BooksButton extends Button {
             player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
         } else {
             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 20f, 0.1f);
-            Universe.get(MenuHandler.class).openMenuAsync(new BooksMenu(), player);
+            Universe.get(MenuHandler.class).openMenuAsync(new FishingMenu(), player);
         }
     }
 }
