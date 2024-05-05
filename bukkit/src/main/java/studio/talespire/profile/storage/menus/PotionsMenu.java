@@ -20,14 +20,14 @@ public class PotionsMenu extends Menu {
 
         //-- Header
         buttons.put(getSlot(0, 0), new FavoritesButton(false));
-        buttons.put(getSlot(0, 1), new WeaponsButton(false));
-        buttons.put(getSlot(0, 2), new ApparelButton(false));
-        buttons.put(getSlot(0, 3), new PotionsButton(true));
-        buttons.put(getSlot(0, 4), new FoodButton(false));
-        buttons.put(getSlot(0, 5), new BooksButton(false));
-        buttons.put(getSlot(0, 6), new KeysButton(false));
-        buttons.put(getSlot(0, 7), new FishingButton(false));
-        buttons.put(getSlot(0, 8), new MiscButton(false));
+        buttons.put(getSlot(1, 0), new WeaponsButton(false));
+        buttons.put(getSlot(2, 0), new ApparelButton(false));
+        buttons.put(getSlot(3, 0), new PotionsButton(true));
+        buttons.put(getSlot(4, 0), new FoodButton(false));
+        buttons.put(getSlot(5, 0), new BooksButton(false));
+        buttons.put(getSlot(6, 0), new KeysButton(false));
+        buttons.put(getSlot(7, 0), new FishingButton(false));
+        buttons.put(getSlot(8, 0), new MiscButton(false));
 
         return buttons;
     }
