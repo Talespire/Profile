@@ -30,6 +30,7 @@ public class ApparelButton extends Button {
             player.playSound(player.getLocation(), org.bukkit.Sound.ENTITY_VILLAGER_NO, 1, 1);
         } else {
             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 20f, 0.1f);
+            player.closeInventory();
             Universe.get(MenuHandler.class).openMenuAsync(new ApparelMenu(), player);
         }
     }
