@@ -23,10 +23,10 @@ public class FoodMenu extends Menu {
         buttons.put(getSlot(1, 0), new WeaponsButton(false));
         buttons.put(getSlot(2, 0), new ApparelButton(false));
         buttons.put(getSlot(3, 0), new PotionsButton(false));
-        buttons.put(getSlot(4, 0), new FoodButton(false));
+        buttons.put(getSlot(4, 0), new FoodButton(true));
         buttons.put(getSlot(5, 0), new BooksButton(false));
         buttons.put(getSlot(6, 0), new KeysButton(false));
-        buttons.put(getSlot(7, 0), new FishingButton(true));
+        buttons.put(getSlot(7, 0), new FishingButton(false));
         buttons.put(getSlot(8, 0), new MiscButton(false));
 
         return buttons;

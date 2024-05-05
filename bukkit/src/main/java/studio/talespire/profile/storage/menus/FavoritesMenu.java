@@ -1,14 +1,31 @@
 package studio.talespire.profile.storage.menus;
 
+import lombok.RequiredArgsConstructor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.inventory.ItemStack;
+import studio.lunarlabs.universe.Universe;
 import studio.lunarlabs.universe.menus.api.Button;
 import studio.lunarlabs.universe.menus.api.Menu;
+import studio.lunarlabs.universe.menus.api.MenuHandler;
+import studio.lunarlabs.universe.util.ItemBuilder;
+import studio.talespire.profile.Profile;
+import studio.talespire.profile.profiles.ProfileHandler;
 import studio.talespire.profile.storage.menus.buttons.*;
+import studio.talespire.profile.util.buttons.BarButton;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class FavoritesMenu extends Menu {
+
+    private final ProfileHandler profileHandler;
+
+    public FavoritesMenu() {
+        this.profileHandler = Profile.getInstance().getProfileHandler();
+    }
+
     @Override
     public String getTitle(Player player) {
         return "Favorites";
@@ -29,7 +46,42 @@ public class FavoritesMenu extends Menu {
         buttons.put(getSlot(7, 0), new FishingButton(false));
         buttons.put(getSlot(8, 0), new MiscButton(false));
 
+        for (int i = 0; i < 8 ; i++) {
+            buttons.put(getSlot(i, 1), new BarButton());
+        }
+
+        ItemStack[] favorites = profileHandler.getProfile(player.getUniqueId()).getSelectedCharacter().getStorage_favorites();
+
+        for (ItemStack item : favorites) {
+            buttons.put(buttons.size(), new ItemButton(item));
+        }
+
+        for (int i = buttons.size(); i < 54; i++) {
+            buttons.computeIfAbsent(i, k -> new Button() {
+                @Override
+                public ItemStack getItem(Player player) {
+                    return new ItemBuilder(Material.AIR)
+                            .toItemStack();
+                }
+            });
+        }
+
         return buttons;
+    }
+
+    @RequiredArgsConstructor
+    private static class ItemButton extends Button {
+        private final ItemStack item;
+
+        @Override
+        public ItemStack getItem(Player player) {
+            return item;
+        }
+
+        @Override
+        public void clicked(Player player, ClickType clickType) {
+            player.getInventory().addItem(item);
+        }
     }
 
 }

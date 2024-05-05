@@ -6,7 +6,9 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import studio.lunarlabs.universe.Universe;
 import studio.lunarlabs.universe.menus.api.Button;
 import studio.lunarlabs.universe.menus.api.MenuHandler;
@@ -19,9 +21,15 @@ public class FishingButton extends Button {
 
     @Override
     public ItemStack getItem(Player player) {
-        return new ItemBuilder(Material.SALMON)
+        ItemStack item = new ItemBuilder(Material.SALMON)
                 .setName(isSelected? ChatColor.GREEN + "Fishing" : ChatColor.GRAY + "Fishing")
                 .toItemStack();
+
+        ItemMeta meta = item.getItemMeta();
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        item.setItemMeta(meta);
+
+        return item;
     }
 
     @Override
@@ -29,7 +37,7 @@ public class FishingButton extends Button {
         if (isSelected) {
             player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
         } else {
-            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 20f, 0.1f);
+            player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1f, 1f);
             player.closeInventory();
             Universe.get(MenuHandler.class).openMenuAsync(new FishingMenu(), player);
         }

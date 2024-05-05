@@ -12,22 +12,28 @@ import java.util.Date;
 @Setter
 public class Character {
 
+    // -- General Chracter Information
     private int level;
     private final int experience;
     private int levelPoints;
     private double coins;
 
+    //-- Class Specific Information
     private final Class characterClass;
     private final ItemStack[] inventory;
     private final long creationDate;
 
+    //-- Character Storage Information
+    private final ItemStack[] storage_favorites;
+
+    //-- ActionBar Relevent Information
     @Setter private String actionBarReleventInfo;
     @Getter private final String actionBarReleventDefault;
 
+    //-- Player Stats
     private int maxHealth;
     private int defense;
     private int maxMana;
-
     private int currentHealth;
     private int currentMana;
 
@@ -35,13 +41,13 @@ public class Character {
 
         level = 0;
         experience = 0;
-        
         levelPoints = 0;
         
         inventory = new ItemStack[41];
-
         characterClass = Class.UNDEFINED;
         creationDate = new Date().getTime();
+
+        storage_favorites = new ItemStack[45];
 
         actionBarReleventInfo = ((ChatColor.STRIKETHROUGH + "           ") + ChatColor.RESET);
         actionBarReleventDefault = actionBarReleventInfo;
