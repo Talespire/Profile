@@ -179,7 +179,7 @@ public class ProfileMenu extends Menu {
 
         @Override
         public void clicked (Player player, ClickType clickType) {
-            // Open the storage menu
+            player.closeInventory();
         }
     }
 
