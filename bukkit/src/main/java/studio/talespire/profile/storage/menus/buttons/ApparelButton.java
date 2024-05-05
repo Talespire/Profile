@@ -3,6 +3,7 @@ package studio.talespire.profile.storage.menus.buttons;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
@@ -28,7 +29,7 @@ public class ApparelButton extends Button {
         if (isSelected) {
             player.playSound(player.getLocation(), org.bukkit.Sound.ENTITY_VILLAGER_NO, 1, 1);
         } else {
-            player.playSound(player.getLocation(), org.bukkit.Sound.BLOCK_NOTE_BLOCK_HARP, 20f, 0.1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 20f, 0.1f);
             Universe.get(MenuHandler.class).openMenuAsync(new ApparelMenu(), player);
         }
     }

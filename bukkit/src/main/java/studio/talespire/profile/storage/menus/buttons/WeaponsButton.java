@@ -31,7 +31,7 @@ public class WeaponsButton extends Button {
         if (isSelected) {
             player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
         } else {
-            player.playSound(player.getLocation(), XSound.BLOCK_NOTE_BLOCK_HARP.parseSound(), 20f, 0.1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 20f, 0.1f);
             Universe.get(MenuHandler.class).openMenuAsync(new WeaponsMenu(), player);
         }
 
