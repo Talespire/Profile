@@ -38,7 +38,7 @@ public class ActionBar {
                             healthBar + "     " + releventInfo + "     " + manaBar
                     )
             );
-        }, 0L, 10L);
+        }, 0L, 5L);
     }
 
     private int rounder(double value) {
