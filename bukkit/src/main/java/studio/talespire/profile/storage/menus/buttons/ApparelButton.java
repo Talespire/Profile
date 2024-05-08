@@ -39,7 +39,8 @@ public class ApparelButton extends Button {
         } else {
             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1f, 1f);
             player.closeInventory();
-            Universe.get(MenuHandler.class).openMenuAsync(new ApparelMenu(), player);
+            Universe.get(MenuHandler.class).openMenu(new ApparelMenu(), player);
         }
     }
+
 }

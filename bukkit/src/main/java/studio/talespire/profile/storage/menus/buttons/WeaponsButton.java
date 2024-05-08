@@ -41,7 +41,7 @@ public class WeaponsButton extends Button {
         } else {
             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1f, 1f);
             player.closeInventory();
-            Universe.get(MenuHandler.class).openMenuAsync(new WeaponsMenu(), player);
+            Universe.get(MenuHandler.class).openMenu(new WeaponsMenu(), player);
         }
 
     }

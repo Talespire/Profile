@@ -181,7 +181,7 @@ public class ProfileMenu extends Menu {
         @Override
         public void clicked (Player player, ClickType clickType) {
             player.closeInventory();
-            Universe.get(MenuHandler.class).openMenuAsync(new FavoritesMenu(), player);
+            Universe.get(MenuHandler.class).openMenu(new FavoritesMenu(), player);
         }
     }
 

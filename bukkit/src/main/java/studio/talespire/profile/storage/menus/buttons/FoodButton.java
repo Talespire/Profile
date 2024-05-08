@@ -40,7 +40,7 @@ public class FoodButton extends Button {
           } else {
             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1f, 1f);
             player.closeInventory();
-              Universe.get(MenuHandler.class).openMenuAsync(new FoodMenu(), player);
+              Universe.get(MenuHandler.class).openMenu(new FoodMenu(), player);
           }
     }
 }

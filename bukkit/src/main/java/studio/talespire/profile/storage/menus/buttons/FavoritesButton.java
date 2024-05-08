@@ -33,7 +33,7 @@ public class FavoritesButton extends Button {
         } else {
             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1f, 1f);
             player.closeInventory();
-            Universe.get(MenuHandler.class).openMenuAsync(new FavoritesMenu(), player);
+            Universe.get(MenuHandler.class).openMenu(new FavoritesMenu(), player);
         }
     }
 }

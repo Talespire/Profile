@@ -45,17 +45,20 @@ public class FavoritesMenu extends Menu {
         buttons.put(getSlot(6, 0), new KeysButton(false));
         buttons.put(getSlot(7, 0), new FishingButton(false));
         buttons.put(getSlot(8, 0), new MiscButton(false));
-
         for (int i = 0; i < 8 ; i++) {
             buttons.put(getSlot(i, 1), new BarButton());
         }
 
+        //-- Inventory
         ItemStack[] favorites = profileHandler.getProfile(player.getUniqueId()).getSelectedCharacter().getStorage_favorites();
 
+        // Iterate through the player's favorites and add them to the menu
         for (ItemStack item : favorites) {
+            if (item == null) continue;
             buttons.put(buttons.size(), new ItemButton(item));
         }
 
+        // Fill the rest of the menu with empty slots
         for (int i = buttons.size(); i < 54; i++) {
             buttons.computeIfAbsent(i, k -> new Button() {
                 @Override
@@ -65,7 +68,6 @@ public class FavoritesMenu extends Menu {
                 }
             });
         }
-
         return buttons;
     }
 
