@@ -5,8 +5,12 @@ import lombok.Setter;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import studio.talespire.profile.classes.Class;
+import studio.talespire.questmind.quests.Quest;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 @Getter
 @Setter
@@ -37,6 +41,10 @@ public class Character {
     private int currentHealth;
     private int currentMana;
 
+    //-- Quests
+    private final HashMap<String, Integer> activeQuests;
+    private final List<String> completedQuests;
+
     public Character() {
 
         level = 0;
@@ -57,6 +65,22 @@ public class Character {
         maxMana = 100;
         currentHealth = maxHealth;
         currentMana = maxMana;
+
+        activeQuests = new HashMap<>();
+        completedQuests = new ArrayList<>();
+    }
+
+    public void addQuest(Quest quest) {
+        activeQuests.put(quest.getQuestName(), 0);
+    }
+
+    public void updateQuest(Quest quest, int objectiveIndex) {
+        activeQuests.put(quest.getQuestName(), objectiveIndex);
+    }
+
+    public void completedQuest(Quest quest) {
+        activeQuests.remove(quest.getQuestName());
+        completedQuests.add(quest.getQuestName());
     }
     
     public void incrementLevel(int amount) {

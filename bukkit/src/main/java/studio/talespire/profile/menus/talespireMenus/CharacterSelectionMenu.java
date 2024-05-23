@@ -17,6 +17,9 @@ import studio.talespire.profile.Profile;
 import studio.talespire.profile.actionbar.ActionBar;
 import studio.talespire.profile.character.Character;
 import studio.talespire.profile.profiles.ProfileHandler;
+import studio.talespire.profile.profiles.TalespireProfile;
+import studio.talespire.questmind.quests.Quest;
+import studio.talespire.questmind.quests.main.act1.Act1Quest1;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -94,7 +97,7 @@ public class CharacterSelectionMenu extends Menu {
                 player.getInventory().setContents(character.getInventory());
 
                 // Remove all effects associated with first spawning in, and send the player off to the world
-                sendPlayerOff(player);
+                sendPlayerOff(player, false);
                 doneWithMenu = true;
                 player.closeInventory();
             }
@@ -124,24 +127,40 @@ public class CharacterSelectionMenu extends Menu {
             // Close the menu and send the player off to the world
             doneWithMenu = true;
             player.closeInventory();
-            sendPlayerOff(player);
+
+            sendPlayerOff(player, true);
         }
     }
 
-    public static void sendPlayerOff(Player player) {
+    public static void sendPlayerOff(Player player, boolean newCharacter) {
 
-        player.sendMessage("Welcome to the server!");
+        Character character = Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).getSelectedCharacter();
+
+        if (newCharacter) {
+            Quest firstQuest = new Act1Quest1();
+
+            character.addQuest(new Act1Quest1());
+
+
+
+
+        }
+
         player.teleport(Bukkit.getWorld("world").getSpawnLocation());
         player.setInvisible(false);
         player.clearActivePotionEffects();
 
+        giveItems(player);
+
+        // Initialize the actionBar and let it do its thing
+        new ActionBar(player);
+    }
+
+    public static void giveItems(Player player) {
         player.getInventory().setItem(8,
                 new ItemBuilder(Material.HEART_OF_THE_SEA)
                         .setName(ChatColor.GREEN + "Talespire Menu")
                         .addLoreLine(ChatColor.GRAY + "Right click to open the Talespire Menu")
                         .toItemStack());
-
-        // Initialize the actionBar and let it do its thing
-        new ActionBar(player);
     }
 }

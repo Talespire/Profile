@@ -8,4 +8,6 @@ dependencies {
 
     compileOnly "redis.clients:jedis:5.1.2"
     compileOnly "org.mongodb:mongodb-driver-reactivestreams:5.0.0"
+
+    compileOnly "studio.talespire.questmind:shared:0.0.1"
 }
