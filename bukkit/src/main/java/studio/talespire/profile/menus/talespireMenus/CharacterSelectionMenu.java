@@ -135,25 +135,24 @@ public class CharacterSelectionMenu extends Menu {
     public static void sendPlayerOff(Player player, boolean newCharacter) {
 
         Character character = Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).getSelectedCharacter();
+        player.setInvisible(false);
+        player.clearActivePotionEffects();
 
         if (newCharacter) {
             Quest firstQuest = new Act1Quest1();
 
+            giveItems(player);
+            new ActionBar(player);
+
             character.addQuest(new Act1Quest1());
+            firstQuest.startQuest(player.getUniqueId());
 
-
-
-
+        } else {
+            player.teleport(Bukkit.getWorld("world").getSpawnLocation());
+            giveItems(player);
+            new ActionBar(player);
         }
 
-        player.teleport(Bukkit.getWorld("world").getSpawnLocation());
-        player.setInvisible(false);
-        player.clearActivePotionEffects();
-
-        giveItems(player);
-
-        // Initialize the actionBar and let it do its thing
-        new ActionBar(player);
     }
 
     public static void giveItems(Player player) {
