@@ -7,19 +7,12 @@ import org.bukkit.Material;
 @RequiredArgsConstructor
 @Getter
 public enum Class {
-    UNDEFINED ("None", Material.BARRIER),
-    BARBARIAN ("Barbarian", Material.IRON_AXE),
-    BARD ("Bard", Material.MUSIC_DISC_CAT),
-    CLERIC ("Cleric", Material.GOLDEN_APPLE),
-    DRUID ("Druid", Material.OAK_LEAVES),
-    FIGHTER ("Fighter", Material.IRON_SWORD),
-    MONK ("Monk", Material.GOLDEN_CARROT),
-    PALADIN ("Paladin", Material.SHIELD),
-    RANGER ("Ranger", Material.BOW),
-    ROGUE ("Rogue", Material.IRON_NUGGET),
-    SORCERER ("Sorcerer", Material.BLAZE_POWDER),
-    WARLOCK ("Warlock", Material.ENDER_PEARL),
-    WIZARD ("Wizard", Material.ENCHANTING_TABLE);
+    UNDEFINED ("Deprived", Material.BARRIER),
+    MAGE("Mage", Material.STICK),
+    WARRIOR("Warrior", Material.IRON_SWORD),
+    BANDIT("Bandit", Material.IRON_AXE),
+    ARCHER("Archer", Material.BOW),
+    ASSASSIN("Assassin", Material.STONE_SWORD);
 
     private final String name;
     private final Material icon;

@@ -1,52 +1,26 @@
 package studio.talespire.profile.listeners;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.scheduler.BukkitTask;
-import studio.talespire.profile.Profile;
-import studio.talespire.profile.ProfilePlugin;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import studio.lunarlabs.universe.Universe;
+import studio.lunarlabs.universe.menus.api.MenuHandler;
+import studio.talespire.profile.menus.talespireMenus.CharacterSelectionMenu;
 
-import java.util.UUID;
+/**
+ * @author Disunion
+ * @date 5/24/2024
+ */
 
 public class PlayerListener implements Listener {
-//
-//    private BukkitTask task;
-//
-//    @EventHandler
-//    public void onPlayerMove(PlayerMoveEvent event) {
-//        UUID uuid = event.getPlayer().getUniqueId();
-//
-//        String oldReleventInfo = Profile.getInstance().getProfileHandler().getProfile(uuid).getSelectedCharacter().getActionBar().getReleventInfo();
-//
-//        // Cancel the previous task if it exists
-//        if (task != null) {
-//            task.cancel();
-//        }
-//
-//        String direction = event.getTo().getDirection().toString();
-//
-//        Profile.getInstance().getProfileHandler().getProfile(uuid).getSelectedCharacter().getActionBar().setReleventInfo(
-//                ChatColor.WHITE + direction
-//        );
-//
-//        // Schedule a task to reset the action bar after 1 second (20 ticks) of no movement
-//        task = Bukkit.getScheduler().runTaskLater(ProfilePlugin.get(), () -> {
-//            Profile.getInstance().getProfileHandler().getProfile(uuid).getSelectedCharacter().getActionBar().setReleventInfo(oldReleventInfo);
-//        }, 20L);
-//    }
 
-//    @EventHandler
-//    public void onPlayerMove(PlayerMoveEvent event) {
-//        UUID uuid = event.getPlayer().getUniqueId();
-//
-//        String direction = event.getTo().getDirection().toString();
-//
-//
-//        Profile.getInstance().getProfileHandler().getProfile(uuid).getSelectedCharacter().getActionBar().setReleventInfo(
-//                ChatColor.WHITE + direction
-//        );
-//    }
+    @EventHandler
+    public void onPlayerCloseInventory(InventoryCloseEvent event) {
+        if (event.getInventory() instanceof CharacterSelectionMenu) {
+            if (!CharacterSelectionMenu.isDoneWithMenu()) {
+                Universe.get(MenuHandler.class).openMenuAsync((Player) event.getPlayer(), new CharacterSelectionMenu());
+            }
+        }
+    }
 }

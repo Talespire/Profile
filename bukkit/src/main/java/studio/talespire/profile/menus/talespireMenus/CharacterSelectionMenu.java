@@ -17,7 +17,6 @@ import studio.talespire.profile.Profile;
 import studio.talespire.profile.actionbar.ActionBar;
 import studio.talespire.profile.character.Character;
 import studio.talespire.profile.profiles.ProfileHandler;
-import studio.talespire.profile.profiles.TalespireProfile;
 import studio.talespire.questmind.quests.Quest;
 import studio.talespire.questmind.quests.main.act1.Act1Quest1;
 
@@ -145,12 +144,15 @@ public class CharacterSelectionMenu extends Menu {
             new ActionBar(player);
 
             character.addQuest(new Act1Quest1());
+            Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).save();
+
             firstQuest.startQuest(player.getUniqueId());
 
         } else {
             player.teleport(Bukkit.getWorld("world").getSpawnLocation());
             giveItems(player);
             new ActionBar(player);
+            Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).save();
         }
 
     }
