@@ -144,6 +144,7 @@ public class CharacterSelectionMenu extends Menu {
             new ActionBar(player);
 
             character.addQuest(new Act1Quest1());
+            character.setTrackedQuest(firstQuest.getQuestName());
             Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).save();
 
             firstQuest.startQuest(player.getUniqueId());

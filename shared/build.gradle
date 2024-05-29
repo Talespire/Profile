@@ -10,4 +10,5 @@ dependencies {
     compileOnly "org.mongodb:mongodb-driver-reactivestreams:5.0.0"
 
     compileOnly "studio.talespire.questmind:shared:0.0.1"
+    compileOnly "studio.talespire.questmind:bukkit:0.0.1"
 }

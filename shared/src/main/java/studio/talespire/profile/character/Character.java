@@ -4,8 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
+import studio.lunarlabs.universe.Universe;
 import studio.talespire.profile.classes.Class;
+import studio.talespire.questmind.QuestMind;
+import studio.talespire.questmind.quests.Objective;
 import studio.talespire.questmind.quests.Quest;
+import studio.talespire.questmind.quests.QuestService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +27,7 @@ public class Character {
     private double coins;
 
     //-- Class Specific Information
-    private final Class characterClass;
+    private Class characterClass;
     private final ItemStack[] inventory;
     private final long creationDate;
 
@@ -42,6 +46,7 @@ public class Character {
     private int currentMana;
 
     //-- Quests
+    @Setter @Getter private String trackedQuest;
     private final HashMap<String, Integer> activeQuests;
     private final List<String> completedQuests;
 
@@ -66,12 +71,22 @@ public class Character {
         currentHealth = maxHealth;
         currentMana = maxMana;
 
+        trackedQuest = "";
         activeQuests = new HashMap<>();
         completedQuests = new ArrayList<>();
     }
 
     public void addQuest(Quest quest) {
         activeQuests.put(quest.getQuestName(), 0);
+    }
+
+    public int getPlayerObjectiveIndex(String questName) {
+        for (String quest : activeQuests.keySet()) {
+            if (quest.equals(questName)) {
+                return activeQuests.get(quest);
+            }
+        }
+        return 0;
     }
 
     public void updateQuest(Quest quest, int objectiveIndex) {
