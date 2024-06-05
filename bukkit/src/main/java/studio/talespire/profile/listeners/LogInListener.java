@@ -18,8 +18,8 @@ public class LogInListener implements Listener {
 
         event.getPlayer().getInventory().clear();
 
-        event.getPlayer().setInvisible(true);
-        event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 99999, 1, false, false, false));
+//        event.getPlayer().setInvisible(true);
+//        event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 99999, 1, false, false, false));
 
         event.getPlayer().teleport(Bukkit.getWorld("world").getSpawnLocation());
 

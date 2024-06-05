@@ -40,10 +40,15 @@ public class Character {
 
     //-- Player Stats
     private int maxHealth;
-    private int defense;
-    private int maxMana;
     private int currentHealth;
+    private int maxMana;
     private int currentMana;
+    private int speed;
+    private int maxCarryWeight;
+    private int currentCarryWeight;
+    private int defense;
+    private int damage;
+    private int strength;
 
     //-- Quests
     @Setter @Getter private String trackedQuest;
@@ -66,10 +71,15 @@ public class Character {
         actionBarReleventDefault = actionBarReleventInfo;
 
         maxHealth = 100;
-        defense = 0;
-        maxMana = 100;
         currentHealth = maxHealth;
+        maxMana = 100;
         currentMana = maxMana;
+        speed = 0;
+        maxCarryWeight = 100;
+        currentCarryWeight = 0;
+        defense = 0;
+        damage = 0;
+        strength = 0;
 
         trackedQuest = "";
         activeQuests = new HashMap<>();

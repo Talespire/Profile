@@ -53,6 +53,8 @@ public class CharacterSelectionMenu extends Menu {
             buttons.computeIfAbsent(i, k -> new NewCharacterButton());
         }
 
+        buttons.put(getSlot(7, 1), new StaffOverrideButton());
+
         return buttons;
     }
 
@@ -128,6 +130,32 @@ public class CharacterSelectionMenu extends Menu {
             player.closeInventory();
 
             sendPlayerOff(player, true);
+        }
+    }
+
+    @RequiredArgsConstructor
+    public static class StaffOverrideButton extends Button {
+
+        @Override
+        public ItemStack getItem(Player player) {
+            return new ItemBuilder(Material.REDSTONE)
+                    .setName(ChatColor.RED + "[!] Staff Override")
+                    .toItemStack();
+        }
+
+        @Override
+        public void clicked(Player player, ClickType clickType) {
+            Character newCharacter = new Character();
+
+            // Create a new character, add it to the player's profile and set it as the selected character
+            Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).addCharacter(newCharacter);
+            Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).setSelectedCharacter(newCharacter);
+
+            // Close the menu and send the player off to the world
+            doneWithMenu = true;
+            player.closeInventory();
+
+            sendPlayerOff(player, false);
         }
     }
 
