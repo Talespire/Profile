@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -14,6 +15,8 @@ import studio.lunarlabs.universe.menus.api.Menu;
 import studio.lunarlabs.universe.menus.api.MenuHandler;
 import studio.lunarlabs.universe.util.ItemBuilder;
 import studio.talespire.profile.Profile;
+import studio.talespire.profile.ProfileBukkit;
+import studio.talespire.profile.ProfilePlugin;
 import studio.talespire.profile.actionbar.ActionBar;
 import studio.talespire.profile.character.Character;
 import studio.talespire.profile.profiles.ProfileHandler;
@@ -178,8 +181,10 @@ public class CharacterSelectionMenu extends Menu {
             firstQuest.startQuest(player.getUniqueId());
 
         } else {
-            player.teleport(Bukkit.getWorld("world").getSpawnLocation());
+            Location location = new Location(ProfilePlugin.get().getServer().getWorld("world"), character.getLocationX(), character.getLocationY(), character.getLocationZ());
+            player.teleport(location);
             giveItems(player);
+            player.getInventory().setContents(character.getInventory());
             new ActionBar(player);
             Profile.getInstance().getProfileHandler().getProfile(player.getUniqueId()).save();
         }

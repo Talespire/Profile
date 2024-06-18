@@ -29,6 +29,9 @@ public class Character {
     //-- Class Specific Information
     private Class characterClass;
     private final ItemStack[] inventory;
+    protected double locationX;
+    protected double locationY;
+    protected double locationZ;
     private final long creationDate;
 
     //-- Character Storage Information
@@ -64,6 +67,10 @@ public class Character {
         inventory = new ItemStack[41];
         characterClass = Class.UNDEFINED;
         creationDate = new Date().getTime();
+
+        locationX = 0.5;
+        locationY = 0;
+        locationZ = 0.5;
 
         storage_favorites = new ItemStack[45];
 

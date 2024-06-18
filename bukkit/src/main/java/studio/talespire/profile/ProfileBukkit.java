@@ -6,6 +6,7 @@ import studio.lunarlabs.universe.Universe;
 import studio.lunarlabs.universe.scoreboard.ScoreboardService;
 import studio.talespire.profile.listeners.LogInListener;
 import studio.talespire.profile.listeners.LogOutListener;
+import studio.talespire.profile.listeners.PlayerListener;
 import studio.talespire.profile.menus.MenuListener;
 import studio.talespire.profile.scoreboard.PlayerScoreBoardAdapter;
 
@@ -23,9 +24,8 @@ public class ProfileBukkit extends Profile{
         Universe.get(ScoreboardService.class).init();
 
         plugin.getServer().getPluginManager().registerEvents(new LogInListener(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new PlayerListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new LogOutListener(), plugin);
         plugin.getServer().getPluginManager().registerEvents(new MenuListener(), plugin);
-        //plugin.getServer().getPluginManager().registerEvents(new PlayerListener(), plugin);
-
     }
 }
